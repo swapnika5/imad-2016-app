@@ -4,13 +4,57 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
+var articleOne={
+    s:'article one',
+    a:'abcdefghijk',
+    b:'sssssssssssssssssssssssssss',
+    c:'dgdfhgdfhgfhgfh'
+};
+
+var articleTwo={
+    s:'article 2',
+    a:'abcdefghijk',
+    b:'sssssssssssssssssssssssssss',
+    c:'dgdfhgdfhgfhgfh'
+};
+
+var articleThree={
+    s:'article 3',
+    a:'abcdefghijk',
+    b:'sssssssssssssssssssssssssss',
+    c:'dgdfhgdfhgfhgfh'
+};
+function create(data)
+{
+    var s=data.s;
+    var a=data.a;
+    var b=data.b;
+    var c=data.c;
+    var html=`<html>
+<h4>Page</h4>
+${s}
+<hr>
+${a}
+<br>
+
+${b}
+<br>
+${c}
+</html>
+`;
+return html;
+}
+
+
+var articles=[
+    ];
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 app.get('/article-one', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+  res.send(create(articleOne));
 });
 
 app.get('/article-two', function (req, res) {
